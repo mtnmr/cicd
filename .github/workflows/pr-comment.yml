@@ -1,0 +1,13 @@
+name: PR Comment
+on: pull_request
+jobs:
+    comment:
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write # 書き込みを許可
+            contents: read # ソースコードの読み込み許可（permissionsがない場合デフォルトで読み込み許可されているが、permissionsを書くなら明示的に書かないと許可されなくなる）
+        steps: 
+            - uses: actions/checkout@4
+            - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}"
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GITHUB_TOKENはワークフロー開始時に自動生成されて終了すると自動的に破棄される
