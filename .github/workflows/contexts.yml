@@ -3,5 +3,7 @@ on: push
 jobs:
   print:
     runs-on: ubuntu-latest
+    env:
+        Actor: ${{ github.actor }}
     steps:
-      - run: echo "${{ github.actor }}" # githubコンテキストの参照
+      - run: echo "${Actor}" # 環境変数経由でコンテキストを参照
