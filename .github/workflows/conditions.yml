@@ -2,6 +2,7 @@ name: Conditions
 on: push
 jobs:
     skip-or-run:
+        if: ${{ github.actor == 'octocat'}} # 実行前にチェック
         runs-on: ubuntu-latest
         steps:
             - run: echo "Hello"
